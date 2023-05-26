@@ -7,21 +7,21 @@ namespace Guestline.BattleshipGame
 {
     internal class Game
     {
+        private readonly GameLoop _gameLoop;
         private readonly IBoardService _boardService;
         private readonly IInteractionService _interactionService;
-        private readonly IInputParser _inputParser;
         private readonly IBoardPrinter _boardPrinter;
 
-        public Game(IBoardService boardService, IInteractionService interactionService, 
-            IInputParser inputParser, IBoardPrinter boardPrinter)
+        public Game(GameLoop gameLoop, IBoardService boardService, 
+            IInteractionService interactionService, IBoardPrinter boardPrinter)
         {
+            _gameLoop = gameLoop;
             _boardService = boardService;
             _interactionService = interactionService;
-            _inputParser = inputParser;
             _boardPrinter = boardPrinter;
         }
 
-        internal void Play()
+        internal virtual void Play()
         {
             try
             {
@@ -32,35 +32,7 @@ namespace Guestline.BattleshipGame
                 _boardService.PlaceWarship(board, new Destroyer());
                 _boardService.PlaceWarship(board, new Destroyer());
 
-                while (true)
-                {
-                    string? rawInput = _interactionService.ReadLine();
-                    if (rawInput == "surrender")
-                    {
-                        board.Surrender();
-                        _interactionService.WriteLine(_boardPrinter.Print(board));
-                        break;
-                    }
-
-                    try
-                    {
-                        if (NextIteration(board, rawInput))
-                        {
-                            break;
-                        }
-
-                        _interactionService.WriteLine(_boardPrinter.Print(board));
-                    }
-                    catch (BattleshipException e)
-                    {
-                        _interactionService.WriteLine(e.Message);
-                    }
-                    catch (Exception)
-                    {
-                        _interactionService.WriteLine("Unhandled error. Can't continue the game.");
-                        break;
-                    }
-                }
+                _gameLoop.Loop(board);
             }
             catch (BattleshipException e)
             {
@@ -84,31 +56,6 @@ namespace Guestline.BattleshipGame
             _interactionService.WriteLine("Legend on the board:");
             _interactionService.WriteLine(_boardPrinter.PrintLegend());
             _interactionService.WriteLine("");
-        }
-
-        private bool NextIteration(Board board, string? rawInput)
-        {
-            (char column, int row) = _inputParser.Parse(rawInput);
-            ShotResult shotResult = board.TryShot(row.ToRowIndex(), column.ToColumnIndex());
-            if (shotResult == ShotResult.Miss)
-            {
-                _interactionService.WriteLine("Miss!");
-            }
-            if (shotResult == ShotResult.Shot)
-            {
-                _interactionService.WriteLine("Shot!");
-            }
-            if (shotResult == ShotResult.ShotAndSunk)
-            {
-                _interactionService.WriteLine("Shot and sunk!");
-            }
-            if (shotResult == ShotResult.SunkAndWin)
-            {
-                _interactionService.WriteLine("You sunk the last ship! Congrats!");
-                _interactionService.WriteLine(_boardPrinter.Print(board));
-                return true;
-            }
-            return false;
         }
     }
 }

@@ -11,7 +11,8 @@ services.AddTransient<IRandomService, RandomService>();
 services.AddTransient<IInteractionService, ConsoleService>();
 services.AddTransient<IInputParser, InputParser>();
 services.AddTransient<IBoardPrinter, BoardPrinter>();
-services.AddTransient<Game>();
+services.AddSingleton<Game>();
+services.AddSingleton<GameLoop>();
 
 var serviceProvider = services.BuildServiceProvider();
 
