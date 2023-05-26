@@ -1,4 +1,4 @@
-﻿namespace Guestline.BattleshipGame.Domain.Entities
+﻿namespace Guestline.BattleshipGame.Domain
 {
     public class Constants
     {

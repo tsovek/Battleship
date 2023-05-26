@@ -7,10 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 var services = new ServiceCollection();
 services.AddTransient<IBoardService, BoardService>();
+services.AddTransient<IBoardPrinter, BoardPrinter>();
 services.AddTransient<IRandomService, RandomService>();
 services.AddTransient<IInteractionService, ConsoleService>();
-services.AddTransient<IInputParser, InputParser>();
-services.AddTransient<IBoardPrinter, BoardPrinter>();
 services.AddSingleton<Game>();
 services.AddSingleton<GameLoop>();
 

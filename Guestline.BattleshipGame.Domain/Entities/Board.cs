@@ -1,4 +1,5 @@
 ﻿using Guestline.BattleshipGame.Domain.DomainServices.Strategies;
+using Guestline.BattleshipGame.Domain.ValueObjects;
 
 namespace Guestline.BattleshipGame.Domain.Entities
 {
@@ -13,9 +14,9 @@ namespace Guestline.BattleshipGame.Domain.Entities
             _warships = new List<Warship>();
         }
 
-        public ShotResult TryShot(int row, int column)
+        public ShotResult TryShot(Row row, Column column)
         {
-            ShotResult shotResult = _grid[row, column].Reveal();
+            ShotResult shotResult = _grid[row.IterableValue, column.IterableChar].Reveal();
             if (shotResult == ShotResult.ShotAndSunk && _warships.All(w => w.IsSunk()))
             {
                 return ShotResult.SunkAndWin;

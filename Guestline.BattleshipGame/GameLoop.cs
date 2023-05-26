@@ -1,6 +1,7 @@
 ﻿using Guestline.BattleshipGame.Domain.DomainServices;
 using Guestline.BattleshipGame.Domain.Entities;
 using Guestline.BattleshipGame.Domain.Exceptions;
+using Guestline.BattleshipGame.Domain.ValueObjects;
 using Guestline.BattleshipGame.Services;
 
 namespace Guestline.BattleshipGame
@@ -9,14 +10,11 @@ namespace Guestline.BattleshipGame
     {
         private readonly IInteractionService _interactionService;
         private readonly IBoardPrinter _boardPrinter;
-        private readonly IInputParser _inputParser;
 
-        public GameLoop(IInteractionService interactionService, IBoardPrinter boardPrinter,
-            IInputParser inputParser)
+        public GameLoop(IInteractionService interactionService, IBoardPrinter boardPrinter)
         {
             _interactionService = interactionService;
             _boardPrinter = boardPrinter;
-            _inputParser = inputParser;
         }
 
         public void Loop(Board board)
@@ -54,8 +52,10 @@ namespace Guestline.BattleshipGame
 
         private bool NextIteration(Board board, string? rawInput)
         {
-            (char column, int row) = _inputParser.Parse(rawInput);
-            ShotResult shotResult = board.TryShot(row.ToRowIndex(), column.ToColumnIndex());
+            var row = Row.From(rawInput);
+            var column = Column.From(rawInput);
+            ShotResult shotResult = board.TryShot(row, column);
+
             if (shotResult == ShotResult.Miss)
             {
                 _interactionService.WriteLine("Miss!");

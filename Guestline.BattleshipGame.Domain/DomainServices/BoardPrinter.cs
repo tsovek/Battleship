@@ -1,6 +1,6 @@
 ﻿using System.Text;
 using Guestline.BattleshipGame.Domain.Entities;
-using static Guestline.BattleshipGame.Domain.Entities.Constants;
+using static Guestline.BattleshipGame.Domain.Constants;
 
 namespace Guestline.BattleshipGame.Domain.DomainServices
 {

@@ -1,6 +1,6 @@
 ﻿using Guestline.BattleshipGame.Domain.Exceptions;
 
-namespace Guestline.BattleshipGame.Exceptions
+namespace Guestline.BattleshipGame.Domain.Exceptions
 {
     internal class InvalidInputException : BattleshipException
     {
