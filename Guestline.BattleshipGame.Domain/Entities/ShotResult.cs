@@ -1,6 +1,6 @@
 ﻿namespace Guestline.BattleshipGame.Domain.Entities
 {
-    public enum ShotResult // refactor to SmartEnum!!!!
+    public enum ShotResult // TODO: refactor to https://github.com/ardalis/SmartEnum
     {
         Unknown = 0,
         Miss = 1,

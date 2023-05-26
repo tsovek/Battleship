@@ -7,7 +7,7 @@ namespace Guestline.BattleshipGame.Domain.Entities
         private readonly Cell[,] _grid;
         private readonly List<Warship> _warships;
 
-        internal Board()
+        public Board()
         {
             _grid = CreateEmptyGrid();
             _warships = new List<Warship>();

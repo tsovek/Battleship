@@ -2,6 +2,6 @@
 {
     public interface IInputParser
     {
-        (char Column, int Row) Parse(string rawInput);
+        (char Column, int Row) Parse(string? rawInput);
     }
 }
