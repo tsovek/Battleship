@@ -17,7 +17,7 @@ namespace Guestline.BattleshipGame.Domain.DomainServices
         public void PlaceWarship(Board board, Warship warship)
         {
             const int size = Constants.BOARD_SIZE;
-            const int max_iterations = 1000;
+            const int max_iterations = Constants.MAX_PLACEMENT_ITERATIONS;
             int iteration = 0;
             while (iteration < max_iterations)
             {

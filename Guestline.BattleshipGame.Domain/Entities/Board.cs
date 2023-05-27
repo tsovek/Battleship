@@ -1,9 +1,12 @@
 ﻿using Guestline.BattleshipGame.Domain.DomainServices.Strategies;
+using Guestline.BattleshipGame.Domain.Entities.Abstract;
 using Guestline.BattleshipGame.Domain.ValueObjects;
+
+using System.Collections;
 
 namespace Guestline.BattleshipGame.Domain.Entities
 {
-    public class Board
+    public class Board : IEnumerable<IEnumerable<IReadOnlyCell>>
     {
         private readonly Cell[,] _grid;
         private readonly List<Warship> _warships;
@@ -29,22 +32,30 @@ namespace Guestline.BattleshipGame.Domain.Entities
         {
             foreach (var cell in _grid)
             {
-                cell.Reveal(forceReveal: true);
+                cell.ForceReveal();
             }
         }
 
-        internal ShotResult GetCellStatus(int row, int column) => _grid[row, column].GetStatus();
+        IEnumerator<IEnumerable<IReadOnlyCell>> IEnumerable<IEnumerable<IReadOnlyCell>>.GetEnumerator()
+        {
+            return GetEnumerableGrid().GetEnumerator();
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return GetEnumerableGrid().GetEnumerator();
+        }
 
         internal bool TryPlaceWarship(PlacementStrategy placementStrategy, Warship warship,
             int rowStart, int columnStart)
         {
-            bool placementResult = placementStrategy.TryPlaceWarship(_grid, warship, rowStart, columnStart);
-            if (placementResult)
+            bool success = placementStrategy.TryPlaceWarship(_grid, warship, rowStart, columnStart);
+            if (success)
             {
                 _warships.Add(warship);
             }
 
-            return placementResult;
+            return success;
         }
 
         private Cell[,] CreateEmptyGrid()
@@ -59,6 +70,21 @@ namespace Guestline.BattleshipGame.Domain.Entities
                 }
             }
             return grid;
+        }
+
+        private IEnumerable<IEnumerable<IReadOnlyCell>> GetEnumerableGrid()
+        {
+            var result = new List<List<IReadOnlyCell>>();
+            for (int i = 0; i < Constants.BOARD_SIZE; i++)
+            {
+                var row = new List<IReadOnlyCell>();
+                for (int j = 0; j < Constants.BOARD_SIZE; j++)
+                {
+                    row.Add(_grid[i, j]);
+                }
+                result.Add(row);
+            }
+            return result;
         }
     }
 }

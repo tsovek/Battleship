@@ -1,20 +1,27 @@
-﻿using Guestline.BattleshipGame.Domain.Exceptions;
+﻿using Guestline.BattleshipGame.Domain.Entities.Abstract;
+using Guestline.BattleshipGame.Domain.Exceptions;
 
 namespace Guestline.BattleshipGame.Domain.Entities
 {
-    internal class Cell
+    internal class Cell : IReadOnlyCell
     {
         private bool _revealed = false;
         internal Warship? Warship { get; set; }
 
-        public ShotResult Reveal(bool forceReveal = false)
+        internal ShotResult Reveal()
         {
-            if (forceReveal == false && _revealed) throw new RepeatedAttemptException();
+            if (_revealed) throw new RepeatedAttemptException();
 
             _revealed = true;
             var status = Warship?.Shot() ?? ShotResult.Miss;
 
             return status;
+        }
+
+        internal void ForceReveal()
+        {
+            _revealed = true;
+            Warship?.Shot();
         }
 
         public ShotResult GetStatus()

@@ -1,5 +1,7 @@
 ﻿using System.Text;
 using Guestline.BattleshipGame.Domain.Entities;
+using Guestline.BattleshipGame.Domain.Entities.Abstract;
+
 using static Guestline.BattleshipGame.Domain.Constants;
 
 namespace Guestline.BattleshipGame.Domain.DomainServices
@@ -19,16 +21,18 @@ namespace Guestline.BattleshipGame.Domain.DomainServices
             var sb = new StringBuilder();
             PrintHeader(sb);
 
-            for (int i = 0; i < BOARD_SIZE; i++)
+            int i = 0;
+            foreach (IEnumerable<IReadOnlyCell> row in board)
             {
                 PrintLeftLegend(sb, i);
-                for (int j = 0; j < BOARD_SIZE; j++)
+                foreach (IReadOnlyCell cell in row)
                 {
-                    char sign = _mappings[board.GetCellStatus(i, j)];
+                    char sign = _mappings[cell.GetStatus()];
                     sb.Append(sign);
                     sb.Append(' ');
                 }
                 sb.AppendLine();
+                i++;
             }
 
             return sb.ToString();
