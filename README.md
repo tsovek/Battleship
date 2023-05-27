@@ -14,5 +14,7 @@ To play, type these commands:
 ```
 dotnet restore
 dotnet build
+
+cd .\Guestline.Battleships.Console
 dotnet run
 ```
