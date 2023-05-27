@@ -14,8 +14,8 @@ namespace Guestline.Battleships.Domain.Services.PlacementStrategies
                 if (grid[row, column].Warship != null) return false;
                 if (IsColumnOnTheLeftOccupied(grid, row, column)) return false;
                 if (IsColumnOnTheRightOccupied(grid, row, column)) return false;
-                if (row == firstRow && IsRowAboveOccupied(grid, row, column)) return false;
-                if (row == lastRow && IsRowBelowOccupied(grid, row, column)) return false;
+                if (row == firstRow && IsRowBelowOccupied(grid, row, column)) return false;
+                if (row == lastRow && IsRowAboveOccupied(grid, row, column)) return false;
             }
             for (int row = firstRow; row >= lastRow; row--)
             {
