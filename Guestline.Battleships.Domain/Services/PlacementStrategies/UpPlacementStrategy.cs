@@ -1,4 +1,4 @@
-﻿using Guestline.BattleshipGame.Domain.Entities;
+﻿using Guestline.Battleships.Domain.Entities;
 
 namespace Guestline.Battleships.Domain.Services.PlacementStrategies
 {
@@ -6,7 +6,7 @@ namespace Guestline.Battleships.Domain.Services.PlacementStrategies
     {
         public override bool TryPlaceWarship(Cell[,] grid, Warship warship, int firstRow, int column)
         {
-            if (firstRow - warship.CellsToOccupy < 0) return false;
+            if (firstRow - warship.CellsToOccupy + 1 < 0) return false;
 
             int lastRow = firstRow - warship.CellsToOccupy + 1;
             for (int row = firstRow; row >= lastRow; row--)

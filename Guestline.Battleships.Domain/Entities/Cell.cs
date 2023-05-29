@@ -1,7 +1,7 @@
-﻿using Guestline.BattleshipGame.Domain.Entities.Base;
-using Guestline.BattleshipGame.Domain.Exceptions;
+﻿using Guestline.Battleships.Domain.Entities.Base;
+using Guestline.Battleships.Domain.Exceptions;
 
-namespace Guestline.BattleshipGame.Domain.Entities
+namespace Guestline.Battleships.Domain.Entities
 {
     internal class Cell : IReadOnlyCell
     {
@@ -13,7 +13,7 @@ namespace Guestline.BattleshipGame.Domain.Entities
             if (_revealed) throw new RepeatedAttemptException();
 
             _revealed = true;
-            var status = Warship?.Shot() ?? AttemptResult.Miss;
+            var status = Warship?.Hit() ?? AttemptResult.Miss;
 
             return status;
         }
@@ -21,7 +21,7 @@ namespace Guestline.BattleshipGame.Domain.Entities
         internal void ForceReveal()
         {
             _revealed = true;
-            Warship?.Shot();
+            Warship?.Hit();
         }
 
         public AttemptResult GetStatus()

@@ -1,5 +1,5 @@
-﻿using Guestline.BattleshipGame.Domain;
-using Guestline.BattleshipGame.Domain.Entities;
+﻿using Guestline.Battleships.Domain;
+using Guestline.Battleships.Domain.Entities;
 
 namespace Guestline.Battleships.Domain.Services.PlacementStrategies
 {

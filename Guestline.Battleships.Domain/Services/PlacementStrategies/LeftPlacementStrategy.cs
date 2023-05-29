@@ -1,4 +1,4 @@
-﻿using Guestline.BattleshipGame.Domain.Entities;
+﻿using Guestline.Battleships.Domain.Entities;
 
 namespace Guestline.Battleships.Domain.Services.PlacementStrategies
 {
@@ -15,8 +15,8 @@ namespace Guestline.Battleships.Domain.Services.PlacementStrategies
                 if (grid[row, column].Warship != null) return false;
                 if (IsRowAboveOccupied(grid, row, column)) return false;
                 if (IsRowBelowOccupied(grid, row, column)) return false;
-                if (column == firstColumn && IsColumnOnTheRightOccupied(grid, row, column)) return false;
-                if (column == lastColumn && IsColumnOnTheLeftOccupied(grid, row, column)) return false;
+                if (column == lastColumn && IsColumnOnTheRightOccupied(grid, row, column)) return false;
+                if (column == firstColumn && IsColumnOnTheLeftOccupied(grid, row, column)) return false;
             }
             for (int column = lastColumn; column >= firstColumn; column--)
             {

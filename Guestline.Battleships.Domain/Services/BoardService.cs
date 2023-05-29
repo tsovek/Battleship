@@ -1,6 +1,6 @@
-﻿using Guestline.BattleshipGame.Domain;
-using Guestline.BattleshipGame.Domain.Entities;
-using Guestline.BattleshipGame.Domain.Exceptions;
+﻿using Guestline.Battleships.Domain;
+using Guestline.Battleships.Domain.Entities;
+using Guestline.Battleships.Domain.Exceptions;
 using Guestline.Battleships.Domain.Services.Base;
 using Guestline.Battleships.Domain.Services.PlacementStrategies;
 
@@ -20,18 +20,14 @@ namespace Guestline.Battleships.Domain.Services
             const int size = Constants.BOARD_SIZE;
             const int max_iterations = Constants.MAX_PLACEMENT_ITERATIONS;
             int iteration = 0;
-            while (iteration < max_iterations)
+            while (++iteration < max_iterations)
             {
-                iteration++;
-
-                int rowStart = _randomService.GetRandom(0, size - 1);
-                int columnStart = _randomService.GetRandom(0, size - 1);
+                int row = _randomService.GetRandom(0, size - 1);
+                int column = _randomService.GetRandom(0, size - 1);
                 var direction = (Direction)_randomService.GetRandom(0, 3);
-                var placementStrategy = PlacementStrategy.Create(direction);
-                if (board.TryPlaceWarship(placementStrategy, warship, rowStart, columnStart))
-                {
-                    return;
-                }
+                
+                bool success = board.TryPlaceWarship(warship, direction, row, column);
+                if (success) return;
             }
 
             throw new PlacementIterationLimitExceededException();

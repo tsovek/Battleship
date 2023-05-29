@@ -1,6 +1,6 @@
 ﻿using Guestline.Battleships.Domain.Services.Base;
 
-namespace Guestline.BattleshipGame.Domain.Services
+namespace Guestline.Battleships.Domain.Services
 {
     public class RandomService : IRandomService
     {

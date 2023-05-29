@@ -1,4 +1,4 @@
-﻿namespace Guestline.BattleshipGame.Domain.Entities
+﻿namespace Guestline.Battleships.Domain.Entities
 {
     public sealed class AttemptResult // to SmartEnum
     {
@@ -23,5 +23,7 @@
             yield return Hit; 
             yield return HitAndSunk; 
         }
+
+        public override string ToString() => $"{Name}";
     }
 }

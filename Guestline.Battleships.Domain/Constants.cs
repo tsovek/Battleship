@@ -1,6 +1,6 @@
-﻿namespace Guestline.BattleshipGame.Domain
+﻿namespace Guestline.Battleships.Domain
 {
-    public class Constants
+    internal class Constants
     {
         public const int BOARD_SIZE = 10;
         public const int FIRST_LETTER_ASCII = 65;

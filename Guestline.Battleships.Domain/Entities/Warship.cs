@@ -1,4 +1,4 @@
-﻿namespace Guestline.BattleshipGame.Domain.Entities
+﻿namespace Guestline.Battleships.Domain.Entities
 {
     public abstract class Warship
     {
@@ -6,7 +6,7 @@
 
         internal abstract int CellsToOccupy { get; }
 
-        internal AttemptResult Shot()
+        internal AttemptResult Hit()
         {
             _shots++;
 

@@ -1,8 +1,8 @@
 ﻿using System.Text;
-using Guestline.BattleshipGame.Domain.Entities;
-using Guestline.BattleshipGame.Domain.Entities.Base;
+using Guestline.Battleships.Domain.Entities;
+using Guestline.Battleships.Domain.Entities.Base;
 using Guestline.Battleships.Domain.Services.Base;
-using static Guestline.BattleshipGame.Domain.Constants;
+using static Guestline.Battleships.Domain.Constants;
 
 namespace Guestline.Battleships.Domain.Services
 {

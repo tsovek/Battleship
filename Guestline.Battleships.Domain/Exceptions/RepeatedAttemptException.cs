@@ -1,4 +1,4 @@
-﻿namespace Guestline.BattleshipGame.Domain.Exceptions
+﻿namespace Guestline.Battleships.Domain.Exceptions
 {
     public class RepeatedAttemptException : BattleshipException
     {

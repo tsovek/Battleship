@@ -1,20 +1,20 @@
-﻿using Guestline.BattleshipGame.Domain.Entities;
-using Guestline.BattleshipGame.Domain.Exceptions;
+﻿using Guestline.Battleships.Domain.Entities;
+using Guestline.Battleships.Domain.Exceptions;
 
-namespace Guestline.BattleshipGame.Domain.ValueObjects
+namespace Guestline.Battleships.Domain.ValueObjects
 {
-    public class Column
+    public record Column
     {
         public char Value { get; }
 
-        internal int IterableChar => Value - Constants.FIRST_LETTER_ASCII;
+        internal int IterableValue => Value - Constants.FIRST_LETTER_ASCII;
 
         private Column(char value) => Value = value;
 
         public static Column From(string? input)
         {
             if (string.IsNullOrWhiteSpace(input)) throw new InvalidInputException("empty line");
-            if (input.Length > 3) throw new InvalidInputException(input);
+            if (input.Length < 2 || input.Length > 3) throw new InvalidInputException(input);
 
             char column = input[0];
             if (IsColumnValid(column) == false) throw new InvalidInputException(input);

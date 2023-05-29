@@ -1,5 +1,5 @@
-﻿using Guestline.BattleshipGame.Domain.Entities;
-using Guestline.BattleshipGame.Domain.Exceptions;
+﻿using Guestline.Battleships.Domain.Entities;
+using Guestline.Battleships.Domain.Exceptions;
 using Guestline.Battleships.Domain.Services.Base;
 using Guestline.Battleships.Game.Base;
 

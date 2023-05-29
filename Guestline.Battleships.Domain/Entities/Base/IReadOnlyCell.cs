@@ -1,4 +1,4 @@
-﻿namespace Guestline.BattleshipGame.Domain.Entities.Base
+﻿namespace Guestline.Battleships.Domain.Entities.Base
 {
     public interface IReadOnlyCell
     {

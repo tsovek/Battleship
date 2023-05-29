@@ -1,7 +1,7 @@
-﻿using Guestline.BattleshipGame.Domain.Entities;
-using Guestline.BattleshipGame.Domain.Exceptions;
+﻿using Guestline.Battleships.Domain.Entities;
+using Guestline.Battleships.Domain.Exceptions;
 
-namespace Guestline.BattleshipGame.Domain.ValueObjects
+namespace Guestline.Battleships.Domain.ValueObjects
 {
     public record Row
     {

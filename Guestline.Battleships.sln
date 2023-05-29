@@ -7,7 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guestline.Battleships.Conso
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guestline.Battleships.Domain", "Guestline.Battleships.Domain\Guestline.Battleships.Domain.csproj", "{375A9851-5997-4F98-8DBD-AAB5BCEF8666}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guestline.Battleships.Game", "Guestline.Battleships.Game\Guestline.Battleships.Game.csproj", "{93C751C5-8594-4382-B776-3ABD79D42553}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guestline.Battleships.Game", "Guestline.Battleships.Game\Guestline.Battleships.Game.csproj", "{93C751C5-8594-4382-B776-3ABD79D42553}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guestline.Battleships.Game.Tests.Unit", "Guestline.Battleships.Game.Tests.Unit\Guestline.Battleships.Game.Tests.Unit.csproj", "{D4D67480-59A9-44E0-B998-AFF19481A870}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guestline.Battleships.Domain.Tests.Unit", "Guestline.Battleships.Domain.Tests.Unit\Guestline.Battleships.Domain.Tests.Unit.csproj", "{274DBF47-1260-4BFB-B887-97679581ADFD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D9D14849-C7EB-4F2E-8715-9B76CD48F3F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +33,21 @@ Global
 		{93C751C5-8594-4382-B776-3ABD79D42553}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93C751C5-8594-4382-B776-3ABD79D42553}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93C751C5-8594-4382-B776-3ABD79D42553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4D67480-59A9-44E0-B998-AFF19481A870}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4D67480-59A9-44E0-B998-AFF19481A870}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4D67480-59A9-44E0-B998-AFF19481A870}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4D67480-59A9-44E0-B998-AFF19481A870}.Release|Any CPU.Build.0 = Release|Any CPU
+		{274DBF47-1260-4BFB-B887-97679581ADFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{274DBF47-1260-4BFB-B887-97679581ADFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{274DBF47-1260-4BFB-B887-97679581ADFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{274DBF47-1260-4BFB-B887-97679581ADFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D4D67480-59A9-44E0-B998-AFF19481A870} = {D9D14849-C7EB-4F2E-8715-9B76CD48F3F8}
+		{274DBF47-1260-4BFB-B887-97679581ADFD} = {D9D14849-C7EB-4F2E-8715-9B76CD48F3F8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7FF760D1-C360-4302-B0CE-B1B6F7FAEA27}

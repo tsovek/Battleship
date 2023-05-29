@@ -1,4 +1,4 @@
-﻿using Guestline.BattleshipGame.Domain.Entities;
+﻿using Guestline.Battleships.Domain.Entities;
 
 namespace Guestline.Battleships.Game.Base
 {

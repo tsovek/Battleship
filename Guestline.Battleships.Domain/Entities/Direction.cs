@@ -1,4 +1,4 @@
-﻿namespace Guestline.BattleshipGame.Domain.Entities
+﻿namespace Guestline.Battleships.Domain.Entities
 {
     public enum Direction
     {

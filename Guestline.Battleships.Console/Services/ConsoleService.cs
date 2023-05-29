@@ -1,6 +1,6 @@
 ﻿using Guestline.Battleships.Game.Base;
 
-namespace Guestline.BattleshipGame.Services
+namespace Guestline.Battleships.Services
 {
     public class ConsoleService : IInteractionService
     {

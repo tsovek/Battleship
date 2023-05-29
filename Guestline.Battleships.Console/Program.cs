@@ -1,5 +1,5 @@
-﻿using Guestline.BattleshipGame.Domain.Services;
-using Guestline.BattleshipGame.Services;
+﻿using Guestline.Battleships.Domain.Services;
+using Guestline.Battleships.Services;
 using Guestline.Battleships.Domain.Services;
 using Guestline.Battleships.Domain.Services.Base;
 using Guestline.Battleships.Game;
