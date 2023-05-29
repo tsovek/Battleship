@@ -30,7 +30,7 @@ namespace Guestline.Battleships.Domain.Services
                 if (success) return;
             }
 
-            throw new PlacementIterationLimitExceededException();
+            throw new BoardTooComplexException();
         }
     }
 }

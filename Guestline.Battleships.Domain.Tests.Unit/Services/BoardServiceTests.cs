@@ -41,7 +41,7 @@ namespace Guestline.Battleships.Domain.Tests.Unit.Services
             var boardService = new BoardService(randomServiceMock.Object);
 
             // ACT & ASSERT
-            Assert.Throws<PlacementIterationLimitExceededException>(() => boardService.PlaceWarship(board, warship));
+            Assert.Throws<BoardTooComplexException>(() => boardService.PlaceWarship(board, warship));
         }
 
         private class WarshipMock : Warship
