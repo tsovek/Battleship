@@ -13,10 +13,10 @@ namespace Guestline.Battleships.Domain.Services
             var sb = new StringBuilder();
             PrintHeader(sb);
 
-            int i = 0;
+            int rowNumber = 0;
             foreach (IEnumerable<IReadOnlyCell> row in board)
             {
-                PrintLeftLegend(sb, i);
+                PrintLeftLegend(sb, rowNumber);
                 foreach (IReadOnlyCell cell in row)
                 {
                     char sign = cell.GetStatus().Symbol;
@@ -24,7 +24,7 @@ namespace Guestline.Battleships.Domain.Services
                     sb.Append(' ');
                 }
                 sb.AppendLine();
-                i++;
+                rowNumber++;
             }
 
             return sb.ToString();
