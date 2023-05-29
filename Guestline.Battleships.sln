@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guestline.Battleships.Domai
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guestline.Battleships.Game", "Guestline.Battleships.Game\Guestline.Battleships.Game.csproj", "{93C751C5-8594-4382-B776-3ABD79D42553}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guestline.Battleships.Game.Tests.Unit", "Guestline.Battleships.Game.Tests.Unit\Guestline.Battleships.Game.Tests.Unit.csproj", "{D4D67480-59A9-44E0-B998-AFF19481A870}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guestline.Battleships.Game.Tests.Unit", "Tests\Guestline.Battleships.Game.Tests.Unit\Guestline.Battleships.Game.Tests.Unit.csproj", "{D4D67480-59A9-44E0-B998-AFF19481A870}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guestline.Battleships.Domain.Tests.Unit", "Guestline.Battleships.Domain.Tests.Unit\Guestline.Battleships.Domain.Tests.Unit.csproj", "{274DBF47-1260-4BFB-B887-97679581ADFD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guestline.Battleships.Domain.Tests.Unit", "Tests\Guestline.Battleships.Domain.Tests.Unit\Guestline.Battleships.Domain.Tests.Unit.csproj", "{274DBF47-1260-4BFB-B887-97679581ADFD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D9D14849-C7EB-4F2E-8715-9B76CD48F3F8}"
 EndProject

@@ -13,7 +13,7 @@ namespace Guestline.Battleships.Domain.Services
             var sb = new StringBuilder();
             PrintHeader(sb);
 
-            int rowNumber = 0;
+            int rowNumber = 1;
             foreach (IEnumerable<IReadOnlyCell> row in board)
             {
                 PrintLeftLegend(sb, rowNumber);
@@ -50,10 +50,13 @@ namespace Guestline.Battleships.Domain.Services
             sb.AppendLine();
         }
 
-        private void PrintLeftLegend(StringBuilder sb, int row)
+        private void PrintLeftLegend(StringBuilder sb, int rowNumber)
         {
-            sb.Append($"{row + 1}  ");
-            if (row != BOARD_SIZE - 1) sb.Append(" ");
+            sb.Append($"{rowNumber}  ");
+            if (IsOneDigitNumber(rowNumber)) sb.Append(" ");
         }
+
+        private bool IsOneDigitNumber(int rowNumber) 
+            => rowNumber.ToString().Length == 1;
     }
 }

@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Guestline.Battleships.Domain\Guestline.Battleships.Domain.csproj" />
+    <ProjectReference Include="..\..\Guestline.Battleships.Game\Guestline.Battleships.Game.csproj" />
   </ItemGroup>
 
 </Project>
