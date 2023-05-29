@@ -13,8 +13,8 @@ namespace Guestline.Battleships.Domain.Tests.Unit.Entities
         {
             // ARRANGE
             var board = new Board();
-            PlaceWarshipFromA1ToA2(board);
-            PlaceWarshipFromJ9ToJ10(board);
+            PlaceWarshipFromA1ToB1(board);
+            PlaceWarshipFromI10ToJ10(board);
 
             // ACT & ASSERT
             AttemptResult attemptResult = board.TryHit(Row.From("A1"), Column.From("A1"));
@@ -39,8 +39,8 @@ namespace Guestline.Battleships.Domain.Tests.Unit.Entities
         {
             // ARRANGE
             var board = new Board();
-            PlaceWarshipFromA1ToA2(board);
-            PlaceWarshipFromJ9ToJ10(board);
+            PlaceWarshipFromA1ToB1(board);
+            PlaceWarshipFromI10ToJ10(board);
 
             // ACT & ASSERT
             board.Surrender();
@@ -50,13 +50,13 @@ namespace Guestline.Battleships.Domain.Tests.Unit.Entities
             board.GameOver().Should().BeTrue();
         }
 
-        private void PlaceWarshipFromA1ToA2(Board board)
+        private void PlaceWarshipFromA1ToB1(Board board)
         {
             board.TryPlaceWarship(new WarshipMock(),
                 Direction.Right, row: 0, column: 0);
         }
 
-        private void PlaceWarshipFromJ9ToJ10(Board board)
+        private void PlaceWarshipFromI10ToJ10(Board board)
         {
             board.TryPlaceWarship(new WarshipMock(),
                 Direction.Left, row: 9, column: 9);
