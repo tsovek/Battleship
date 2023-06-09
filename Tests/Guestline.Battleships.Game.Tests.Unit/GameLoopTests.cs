@@ -2,9 +2,8 @@
 using Guestline.Battleships.Domain.Services.Base;
 using Guestline.Battleships.Game.Base;
 using Guestline.Battleships.Domain.Entities;
-using Guestline.Battleships.Domain.ValueObjects;
 using Guestline.Battleships.Domain.Exceptions;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using FluentAssertions;
 
 namespace Guestline.Battleships.Game.Tests.Unit
 {
@@ -12,17 +11,14 @@ namespace Guestline.Battleships.Game.Tests.Unit
     public class GameLoopTests
     {
         private Mock<IInteractionService> _interactionServiceMock;
-        private Mock<IBoardPrinter> _boardPrinterMock;
         private GameLoop _gameLoop;
 
         [SetUp]
         public void Setup()
         {
             _interactionServiceMock = new Mock<IInteractionService>();
-            _boardPrinterMock = new Mock<IBoardPrinter>();
             _gameLoop = new GameLoop(
-                _interactionServiceMock.Object,
-                _boardPrinterMock.Object
+                _interactionServiceMock.Object
             );
         }
 
@@ -91,20 +87,17 @@ namespace Guestline.Battleships.Game.Tests.Unit
             // ARRANGE
             Board board = CreateBoardWithWarshipFromA1ToC1();
             _interactionServiceMock.Setup(service => service.ReadInput()).Returns("A1");
-            _boardPrinterMock.Setup(b => b.Print(It.IsAny<Board>())).Throws<ArgumentException>();
+            _interactionServiceMock.Setup(b => b.Output(It.IsAny<Board>())).Throws<ArgumentException>();
 
-            // ACT
-            _gameLoop.Loop(board);
-
-            // ASSERT
-            AssertMessageOutput("Unhandled error. Can't continue the game.", Times.Once());
+            // ACT & ASSERT
+            this.Invoking(that => _gameLoop.Loop(board)).Should().Throw<ArgumentException>();
         }
 
         private void AssertBoardHasBeenPrinted(Times times)
-            => _boardPrinterMock.Verify(b => b.Print(It.IsAny<Board>()), times);
+            => _interactionServiceMock.Verify(b => b.Output(It.IsAny<Board>()), times);
 
         private void AssertMessageOutput(string message, Times times)
-            => _interactionServiceMock.Verify(i => i.WriteOutput(message), times);
+            => _interactionServiceMock.Verify(i => i.Output(message), times);
 
 
         private Board CreateBoardWithWarshipFromA1ToC1()

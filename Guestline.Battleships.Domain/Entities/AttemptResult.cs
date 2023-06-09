@@ -16,7 +16,7 @@
         public string Name { get; }
         public char Symbol { get; }
 
-        internal static IEnumerable<AttemptResult> GetAll()
+        public static IEnumerable<AttemptResult> GetAll()
         {
             yield return Unknown; 
             yield return Miss; 

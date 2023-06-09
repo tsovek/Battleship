@@ -30,16 +30,6 @@ namespace Guestline.Battleships.Domain.Services
             return sb.ToString();
         }
 
-        public string PrintLegend()
-        {
-            var sb = new StringBuilder();
-            foreach (var attemptResult in AttemptResult.GetAll())
-            {
-                sb.AppendLine($"{attemptResult.Name}: {attemptResult.Symbol}");
-            }
-            return sb.ToString();
-        }
-
         private void PrintHeader(StringBuilder sb)
         {
             sb.Append($"    ");
