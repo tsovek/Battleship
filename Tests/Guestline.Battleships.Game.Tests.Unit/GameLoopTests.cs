@@ -1,9 +1,9 @@
 ﻿using Moq;
-using Guestline.Battleships.Domain.Services.Base;
-using Guestline.Battleships.Game.Base;
 using Guestline.Battleships.Domain.Entities;
 using Guestline.Battleships.Domain.Exceptions;
 using FluentAssertions;
+using Guestline.Battleships.Game.Services;
+using Guestline.Battleships.Game.Services.Base;
 
 namespace Guestline.Battleships.Game.Tests.Unit
 {
@@ -28,10 +28,10 @@ namespace Guestline.Battleships.Game.Tests.Unit
             // ARRANGE
             Board board = CreateBoardWithWarshipFromA1ToC1();
             _interactionServiceMock.SetupSequence(i => i.ReadInput())
-                .Returns("A1")
-                .Returns("B1")
-                .Returns("G5")
-                .Returns("C1")
+                .Returns(Task.FromResult("A1"))
+                .Returns(Task.FromResult("B1"))
+                .Returns(Task.FromResult("G5"))
+                .Returns(Task.FromResult("C1"))
                 .Throws(new InvalidOperationException("Too many attempts!"));
 
             // ACT
@@ -50,8 +50,8 @@ namespace Guestline.Battleships.Game.Tests.Unit
             // ARRANGE
             Board board = CreateBoardWithWarshipFromA1ToC1();
             _interactionServiceMock.SetupSequence(i => i.ReadInput())
-                .Returns("G5")
-                .Returns("surrender");
+                .Returns(Task.FromResult("G5"))
+                .Returns(Task.FromResult("surrender"));
 
             // ACT
             _gameLoop.Loop(board);
@@ -67,10 +67,10 @@ namespace Guestline.Battleships.Game.Tests.Unit
             // ARRANGE
             Board board = CreateBoardWithWarshipFromA1ToC1();
             _interactionServiceMock.SetupSequence(service => service.ReadInput())
-                .Returns("A1")
-                .Returns("invalidInput")
-                .Returns("B1")
-                .Returns("C1")
+                .Returns(Task.FromResult("A1"))
+                .Returns(Task.FromResult("invalidInput"))
+                .Returns(Task.FromResult("B1"))
+                .Returns(Task.FromResult("C1"))
                 .Throws(new InvalidOperationException("Too many attempts!"));
 
             // ACT
@@ -86,11 +86,13 @@ namespace Guestline.Battleships.Game.Tests.Unit
         {
             // ARRANGE
             Board board = CreateBoardWithWarshipFromA1ToC1();
-            _interactionServiceMock.Setup(service => service.ReadInput()).Returns("A1");
+            _interactionServiceMock.Setup(service => service.ReadInput()).Returns(Task.FromResult("A1"));
             _interactionServiceMock.Setup(b => b.Output(It.IsAny<Board>())).Throws<ArgumentException>();
 
             // ACT & ASSERT
-            this.Invoking(that => _gameLoop.Loop(board)).Should().Throw<ArgumentException>();
+            this.Invoking(that => _gameLoop.Loop(board).GetAwaiter().GetResult())
+                .Should()
+                .Throw<ArgumentException>();
         }
 
         private void AssertBoardHasBeenPrinted(Times times)

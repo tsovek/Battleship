@@ -1,9 +1,9 @@
 ﻿using Guestline.Battleships.Domain.Entities;
 using Guestline.Battleships.Domain.Exceptions;
 using Guestline.Battleships.Domain.ValueObjects;
-using Guestline.Battleships.Game.Base;
+using Guestline.Battleships.Game.Services.Base;
 
-namespace Guestline.Battleships.Game
+namespace Guestline.Battleships.Game.Services
 {
     public sealed class GameLoop : IGameLoop
     {
@@ -14,11 +14,11 @@ namespace Guestline.Battleships.Game
             _interactionService = interactionService;
         }
 
-        public void Loop(Board board)
+        public async Task Loop(Board board)
         {
             while (board.GameOver() == false)
             {
-                string? rawInput = _interactionService.ReadInput();
+                string? rawInput = await _interactionService.ReadInput();
 
                 try
                 {
@@ -32,14 +32,14 @@ namespace Guestline.Battleships.Game
                         var column = Column.From(rawInput);
                         AttemptResult attemptResult = board.TryHit(row, column);
 
-                        _interactionService.Output(attemptResult.Name);
+                        await _interactionService.Output(attemptResult.Name);
                     }
 
-                    _interactionService.Output(board);
+                    await _interactionService.Output(board);
                 }
                 catch (BattleshipException e)
                 {
-                    _interactionService.Output(e.Message);
+                    await _interactionService.Output(e.Message);
                 }
             }
         }

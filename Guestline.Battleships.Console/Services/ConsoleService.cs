@@ -1,6 +1,6 @@
 ﻿using Guestline.Battleships.Domain.Entities;
 using Guestline.Battleships.Domain.Services.Base;
-using Guestline.Battleships.Game.Base;
+using Guestline.Battleships.Game.Services.Base;
 
 namespace Guestline.Battleships.Services
 {
@@ -13,15 +13,25 @@ namespace Guestline.Battleships.Services
             _boardPrinter = boardPrinter;
         }
 
-        public string? ReadInput() => Console.ReadLine();
+        public async Task<string> ReadInput()
+        {
+            return await Task.FromResult(System.Console.ReadLine() ?? "");
+        }
 
-        public void Output(string? message = null) => Console.WriteLine(message);
+        public async Task Output(string message)
+        {
+            System.Console.WriteLine(message);
 
-        public void Output(Board board)
+            await Task.CompletedTask;
+        }
+
+        public async Task Output(Board board)
         {
             string output = _boardPrinter.Print(board);
 
-            Console.WriteLine(output);
+            System.Console.WriteLine(output);
+
+            await Task.CompletedTask;
         }
     }
 }

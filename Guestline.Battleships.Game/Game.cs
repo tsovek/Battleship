@@ -1,9 +1,6 @@
 ﻿using Guestline.Battleships.Domain.Entities;
-using Guestline.Battleships.Domain.Exceptions;
 using Guestline.Battleships.Domain.Services.Base;
-using Guestline.Battleships.Game.Base;
-
-using System.Text;
+using Guestline.Battleships.Game.Services.Base;
 
 namespace Guestline.Battleships.Game
 {
@@ -21,7 +18,7 @@ namespace Guestline.Battleships.Game
             _interactionService = interactionService;
         }
 
-        public void Play()
+        public async Task Play()
         {
             try
             {
@@ -30,11 +27,11 @@ namespace Guestline.Battleships.Game
                 _boardService.PlaceWarship(board, new Destroyer());
                 _boardService.PlaceWarship(board, new Destroyer());
 
-                _gameLoop.Loop(board);
+                await _gameLoop.Loop(board);
             }
             catch (Exception)
             {
-                _interactionService.Output("Unhandled error. Can't continue the game.");
+                await _interactionService.Output("Unhandled error. Can't continue the game.");
             }
         }
     }

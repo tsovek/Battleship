@@ -1,7 +1,7 @@
 ﻿using Guestline.Battleships.Domain.Entities;
 using Guestline.Battleships.Domain.Exceptions;
 using Guestline.Battleships.Domain.Services.Base;
-using Guestline.Battleships.Game.Base;
+using Guestline.Battleships.Game.Services.Base;
 
 using Moq;
 
