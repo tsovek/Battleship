@@ -2,6 +2,6 @@
 {
     public interface INewGameCommandHandler
     {
-        Task ExecuteAsync(NewGameCommand command);
+        Task HandleAsync(NewGameCommand command);
     }
 }

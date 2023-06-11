@@ -2,6 +2,6 @@
 {
     public interface IHitCommandHandler
     {
-        void Execute(HitCommand command);
+        void Handle(HitCommand command);
     }
 }

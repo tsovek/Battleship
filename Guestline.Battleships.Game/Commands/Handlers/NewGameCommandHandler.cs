@@ -12,7 +12,7 @@ namespace Guestline.Battleships.Game.Commands.Handlers
             _gameCache = gameCache;
         }
 
-        public async Task ExecuteAsync(NewGameCommand command)
+        public async Task HandleAsync(NewGameCommand command)
         {
             _gameCache.Create();
 

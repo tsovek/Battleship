@@ -1,25 +1,41 @@
 ﻿using Guestline.Battleships.Domain.Entities;
 using Guestline.Battleships.Game.Services.Base;
+using Guestline.Battleships.Web.Hubs;
+using Guestline.Battleships.Web.Services.Base;
+
+using Microsoft.AspNetCore.SignalR;
 
 namespace Guestline.Battleships.Web.Services
 {
     public class AwaitingInteractionService : IInteractionService
     {
         private readonly ISemaphoreService _semaphoreService;
+        private readonly IBoardSerializer _boardSerializer;
+        private readonly IHubContext<BoardHub> _boardHub;
+        private readonly IHubContext<MessageHub> _messageHub;
 
-        public AwaitingInteractionService(ISemaphoreService semaphoreService)
+        public AwaitingInteractionService(
+            ISemaphoreService semaphoreService,
+            IBoardSerializer boardSerializer,
+            IHubContext<BoardHub> boardHub,
+            IHubContext<MessageHub> messageHub)
         {
             _semaphoreService = semaphoreService;
+            _boardSerializer = boardSerializer;
+            _boardHub = boardHub;
+            _messageHub = messageHub;
         }
 
-        public Task Output(string? message)
+        public async Task Output(string? message)
         {
-            return Task.CompletedTask;
+            await _messageHub.Clients.All.SendAsync(message ?? "Unknown");
         }
 
-        public Task Output(Board board)
+        public async Task Output(Board board)
         {
-            return Task.CompletedTask;
+            string serializedBoard = _boardSerializer.Serialize(board);
+
+            await _boardHub.Clients.All.SendAsync(serializedBoard);
         }
 
         public async Task<string> ReadInput()

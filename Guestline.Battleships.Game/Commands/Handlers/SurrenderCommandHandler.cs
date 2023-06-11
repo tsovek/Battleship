@@ -3,18 +3,18 @@ using Guestline.Battleships.Game.Services.Base;
 
 namespace Guestline.Battleships.Game.Commands.Handlers
 {
-    public class HitCommandHandler : IHitCommandHandler
+    public class SurrenderCommandHandler : ISurrenderCommandHandler
     {
         private readonly ISemaphoreService _semaphoreService;
 
-        public HitCommandHandler(ISemaphoreService semaphoreService)
+        public SurrenderCommandHandler(ISemaphoreService semaphoreService)
         {
             _semaphoreService = semaphoreService;
         }
 
-        public void Handle(HitCommand command)
+        public void Handle(SurrenderCommand command)
         {
-            _semaphoreService.Hit(command.Coordinates);
+            _semaphoreService.Hit("surrender");
         }
     }
 }

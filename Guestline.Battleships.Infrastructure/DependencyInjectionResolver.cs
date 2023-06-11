@@ -26,6 +26,7 @@ namespace Guestline.Battleships.Infrastructure
             _serviceCollection.AddTransient<IGameFactory, GameFactory>();
             _serviceCollection.AddTransient<IHitCommandHandler, HitCommandHandler>();
             _serviceCollection.AddTransient<INewGameCommandHandler, NewGameCommandHandler>();
+            _serviceCollection.AddTransient<ISurrenderCommandHandler, SurrenderCommandHandler>();
             _serviceCollection.AddTransient<IRandomService, RandomService>();
             _serviceCollection.AddSingleton<IGameCache, GameCache>();
             
