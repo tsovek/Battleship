@@ -16,6 +16,7 @@ Instruction:
 ```
 dotnet restore
 dotnet build
+dotnet test
 
 cd .\Guestline.Battleships.Console
 dotnet run
@@ -27,6 +28,7 @@ Server remembers state of the game. If you restart it, you can't restore the sta
 Instruction:
 ```
 cd .\Guestline.Battleships.Web\web
+npm install
 npm run build
 
 cd ../..
