@@ -1,5 +1,6 @@
 ﻿using Guestline.Battleships.Domain.Entities;
 using Guestline.Battleships.Domain.Entities.Base;
+using Guestline.Battleships.Web.DTO;
 using Guestline.Battleships.Web.Services.Base;
 
 using System.Text.Json;
@@ -28,18 +29,6 @@ namespace Guestline.Battleships.Web.Services
                 rowIndex++;
             }
             return JsonSerializer.Serialize(new BoardDTO { Items = items.ToArray() });
-        }
-
-        private class BoardDTO
-        {
-            public ItemDTO[] Items { get; set; }
-        }
-
-        private class ItemDTO
-        {
-            public int Row { get; set; }
-            public int Column { get; set; }
-            public string Value { get; set; }
         }
     }
 }
