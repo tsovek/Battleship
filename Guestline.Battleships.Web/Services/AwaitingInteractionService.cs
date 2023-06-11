@@ -28,14 +28,14 @@ namespace Guestline.Battleships.Web.Services
 
         public async Task Output(string? message)
         {
-            await _messageHub.Clients.All.SendAsync(message ?? "Unknown");
+            await _messageHub.Clients.All.SendAsync("MessageUpdated", message ?? "Unknown");
         }
 
         public async Task Output(Board board)
         {
             string serializedBoard = _boardSerializer.Serialize(board);
 
-            await _boardHub.Clients.All.SendAsync(serializedBoard);
+            await _boardHub.Clients.All.SendAsync("BoardUpdated", serializedBoard);
         }
 
         public async Task<string> ReadInput()

@@ -15,6 +15,6 @@ namespace Guestline.Battleships.Game.Services
 
         public void Create() => _game = _gameFactory.Create();
 
-        public Game Get() => _game ?? throw new InvalidOperationException("Game not created yet");
+        public Game Get() => _game;
     }
 }

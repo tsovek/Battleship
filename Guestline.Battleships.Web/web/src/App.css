@@ -12,3 +12,18 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.Navigation button {
+	padding: 10px;
+	margin: 10px;
+	background-color: #282c34;
+	border: 1px solid white;
+	width: 150px;
+	font-size: calc(10px + 2vmin);
+	color: white;
+}
+
+.Navigation button:hover {
+	background-color: #7D6F6C;
+	cursor: pointer
+}

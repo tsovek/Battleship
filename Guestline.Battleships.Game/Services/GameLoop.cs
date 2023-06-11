@@ -42,6 +42,7 @@ namespace Guestline.Battleships.Game.Services
                     await _interactionService.Output(e.Message);
                 }
             }
+            await _interactionService.Output("Game over!");
         }
 
         private bool GiveUp(string? rawInput) => rawInput == "surrender";

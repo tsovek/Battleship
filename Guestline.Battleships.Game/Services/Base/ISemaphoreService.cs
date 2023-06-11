@@ -4,5 +4,6 @@
     {
         Task<string> WaitUntilUserHit();
         void Hit(string coordinates);
+        void Cancel();
     }
 }

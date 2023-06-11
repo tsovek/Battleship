@@ -10,19 +10,36 @@ namespace Guestline.Battleships.Web.Services
     {
         public string Serialize(Board board)
         {
-            string[,] numberedBoard = new string[10,10];
+            var items = new List<ItemDTO>();
             int rowIndex = 0;
             foreach (IEnumerable<IReadOnlyCell> row in board)
             {
                 int columnIndex = 0;
                 foreach (IReadOnlyCell column in row)
                 {
-                    numberedBoard[rowIndex, columnIndex] = column.GetStatus().Name;
+                    items.Add(new ItemDTO 
+                    { 
+                        Row = rowIndex,
+                        Column = columnIndex,
+                        Value = column.GetStatus().Name
+                    });
                     columnIndex++;
                 }
                 rowIndex++;
             }
-            return JsonSerializer.Serialize(numberedBoard);
+            return JsonSerializer.Serialize(new BoardDTO { Items = items.ToArray() });
+        }
+
+        private class BoardDTO
+        {
+            public ItemDTO[] Items { get; set; }
+        }
+
+        private class ItemDTO
+        {
+            public int Row { get; set; }
+            public int Column { get; set; }
+            public string Value { get; set; }
         }
     }
 }
