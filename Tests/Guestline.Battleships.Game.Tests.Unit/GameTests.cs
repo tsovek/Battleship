@@ -1,7 +1,7 @@
 ﻿using Guestline.Battleships.Domain.Entities;
 using Guestline.Battleships.Domain.Exceptions;
 using Guestline.Battleships.Domain.Services.Base;
-using Guestline.Battleships.Game.Base;
+using Guestline.Battleships.Game.Services.Base;
 
 using Moq;
 
@@ -26,8 +26,7 @@ namespace Guestline.Battleships.Game.Tests.Unit
             _game = new Game(
                 _gameLoopMock.Object,
                 _boardServiceMock.Object,
-                _interactionServiceMock.Object,
-                _boardPrinterMock.Object
+                _interactionServiceMock.Object
             );
         }
 
@@ -40,24 +39,6 @@ namespace Guestline.Battleships.Game.Tests.Unit
             // ASSERT
             AssertPlacementHasBeenMadeAtLeastOnce();
             AssertLoopHasBeenCalled();
-            AssertLegendHasBeenPrinted();
-        }
-
-        [Test]
-        public void ShouldCatchAndWriteOutput_WhenAnyBattleshipExceptionIsThrown()
-        {
-            // ARRANGE
-            _gameLoopMock
-                .Setup(loop => loop.Loop(It.IsAny<Board>()))
-                .Throws<RepeatedAttemptException>();
-
-            // ACT
-            _game.Play();
-
-            // ASSERT
-            AssertPlacementHasBeenMadeAtLeastOnce();
-            AssertLegendHasBeenPrinted();
-            AssertErrorHasBeenLogged(new RepeatedAttemptException().Message);
         }
 
         [Test]
@@ -73,18 +54,14 @@ namespace Guestline.Battleships.Game.Tests.Unit
 
             // ASSERT
             AssertPlacementHasBeenMadeAtLeastOnce();
-            AssertLegendHasBeenPrinted();
             AssertErrorHasBeenLogged("Unhandled error. Can't continue the game.");
         }
 
         private void AssertLoopHasBeenCalled()
             => _gameLoopMock.Verify(loop => loop.Loop(It.IsAny<Board>()), Times.Once());
 
-        private void AssertLegendHasBeenPrinted()
-            => _boardPrinterMock.Verify(printer => printer.PrintLegend(), Times.Once());
-
         private void AssertErrorHasBeenLogged(string errorMessage)
-            => _interactionServiceMock.Verify(i => i.WriteOutput(errorMessage), Times.Once());
+            => _interactionServiceMock.Verify(i => i.Output(errorMessage), Times.Once());
 
         private void AssertPlacementHasBeenMadeAtLeastOnce()
             => _boardServiceMock.Verify(b => b.PlaceWarship(It.IsAny<Board>(), It.IsAny<Warship>()), Times.AtLeastOnce());

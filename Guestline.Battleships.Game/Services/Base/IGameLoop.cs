@@ -1,9 +1,9 @@
 ﻿using Guestline.Battleships.Domain.Entities;
 
-namespace Guestline.Battleships.Game.Base
+namespace Guestline.Battleships.Game.Services.Base
 {
     public interface IGameLoop
     {
-        void Loop(Board board);
+        Task Loop(Board board);
     }
 }

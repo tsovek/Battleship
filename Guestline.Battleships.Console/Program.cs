@@ -1,28 +1,20 @@
-﻿using Guestline.Battleships.Domain.Services;
-using Guestline.Battleships.Services;
-using Guestline.Battleships.Domain.Services;
-using Guestline.Battleships.Domain.Services.Base;
+﻿
+using Guestline.Battleships.Console;
 using Guestline.Battleships.Game;
-using Guestline.Battleships.Game.Base;
+using Guestline.Battleships.Game.Services.Base;
+using Guestline.Battleships.Infrastructure;
+using Guestline.Battleships.Services;
 
 using Microsoft.Extensions.DependencyInjection;
 
-var services = new ServiceCollection();
-services.AddTransient<IBoardService, BoardService>();
-services.AddTransient<IBoardPrinter, BoardPrinter>();
-services.AddTransient<IRandomService, RandomService>();
-services.AddTransient<IInteractionService, ConsoleService>();
-services.AddSingleton<IGameLoop, GameLoop>();
-services.AddSingleton<Game>();
+Instruction.Print();
 
-var serviceProvider = services.BuildServiceProvider();
+using var dependencyInjectionResolver = new DependencyInjectionResolver(new ServiceCollection());
+dependencyInjectionResolver.RegisterSingleton<IInteractionService, ConsoleService>();
+IServiceProvider serviceProvider = dependencyInjectionResolver.RegisterCommon();
 
-var game = serviceProvider.GetService<Game>();
+var gameFactory = serviceProvider.GetService<IGameFactory>();
+Game game = gameFactory.Create();
 game.Play();
 
 Console.ReadKey();
-
-if (serviceProvider is IDisposable disposable)
-{
-    disposable.Dispose();
-}

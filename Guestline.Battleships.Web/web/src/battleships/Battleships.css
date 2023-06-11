@@ -1,0 +1,22 @@
+﻿.cell {
+    background-color: #282c34;
+    border: 1px solid white;
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+}
+
+.cell:hover {
+    background-color: #7D6F6C;
+    cursor: pointer;
+}
+
+.cell-empty {
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+}
+
+.legend {
+    font-weight: bold
+}
