@@ -1,11 +1,12 @@
-﻿using Guestline.Battleships.Domain.Services.Base;
+﻿using Guestline.Battleships.Console.Services;
+using Guestline.Battleships.Domain.Services.Base;
 using Guestline.Battleships.Domain.Services;
 using Guestline.Battleships.Game.Services.Base;
 using Guestline.Battleships.Game.Services;
 
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Guestline.Battleships.Infrastructure
+namespace Guestline.Battleships.Console
 {
     public class DependencyInjectionResolver : IDisposable
     {
@@ -23,7 +24,8 @@ namespace Guestline.Battleships.Infrastructure
             _serviceCollection.AddTransient<IGameLoop, GameLoop>();
             _serviceCollection.AddTransient<IGameFactory, GameFactory>();
             _serviceCollection.AddTransient<IRandomService, RandomService>();
-            
+            _serviceCollection.AddTransient<IInteractionService, ConsoleService>();
+
             return _serviceCollection.BuildServiceProvider();
         }
 

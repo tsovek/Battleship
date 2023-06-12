@@ -1,7 +1,7 @@
-﻿using Guestline.Battleships.Game.Commands.Handlers.Base;
-using Guestline.Battleships.Game.Services.Base;
+﻿using Guestline.Battleships.Web.Commands.Handlers.Base;
+using Guestline.Battleships.Web.Services.Base;
 
-namespace Guestline.Battleships.Game.Commands.Handlers
+namespace Guestline.Battleships.Web.Commands.Handlers
 {
     public class HitCommandHandler : IHitCommandHandler
     {
@@ -18,7 +18,7 @@ namespace Guestline.Battleships.Game.Commands.Handlers
 
         public void Handle(HitCommand command)
         {
-            _semaphoreService.Hit(command.Coordinates);
+            _semaphoreService.Hit(command.Coordinates ?? throw new InvalidOperationException("Invalid input"));
         }
     }
 }

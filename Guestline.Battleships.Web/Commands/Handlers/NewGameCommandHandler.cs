@@ -1,7 +1,7 @@
-﻿using Guestline.Battleships.Game.Commands.Handlers.Base;
-using Guestline.Battleships.Game.Services.Base;
+﻿using Guestline.Battleships.Web.Commands.Handlers.Base;
+using Guestline.Battleships.Web.Services.Base;
 
-namespace Guestline.Battleships.Game.Commands.Handlers
+namespace Guestline.Battleships.Web.Commands.Handlers
 {
     public class NewGameCommandHandler : INewGameCommandHandler
     {
@@ -17,7 +17,7 @@ namespace Guestline.Battleships.Game.Commands.Handlers
 
         public async Task HandleAsync(NewGameCommand command)
         {
-            Game game = _gameCache.Get();
+            Game.Game? game = _gameCache.Get();
             if (game != null)
             {
                 _semaphoreService.Cancel();
@@ -26,7 +26,7 @@ namespace Guestline.Battleships.Game.Commands.Handlers
             _gameCache.Create();
             game = _gameCache.Get();
             
-            await game.Play();
+            await game?.PlayAsync()!;
         }
     }
 }

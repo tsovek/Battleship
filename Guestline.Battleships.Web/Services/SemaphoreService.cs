@@ -1,4 +1,4 @@
-﻿using Guestline.Battleships.Game.Services.Base;
+﻿using Guestline.Battleships.Web.Services.Base;
 
 namespace Guestline.Battleships.Game.Services
 {

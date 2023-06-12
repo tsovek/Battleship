@@ -1,4 +1,4 @@
-﻿namespace Guestline.Battleships.Game.Commands
+﻿namespace Guestline.Battleships.Web.Commands
 {
     public class NewGameCommand
     {

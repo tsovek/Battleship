@@ -1,4 +1,4 @@
-﻿namespace Guestline.Battleships.Game.Commands.Handlers.Base
+﻿namespace Guestline.Battleships.Web.Commands.Handlers.Base
 {
     public interface IHitCommandHandler
     {

@@ -34,7 +34,7 @@ namespace Guestline.Battleships.Game.Tests.Unit
         public void ShouldInitBoardAndPlaceWarships_WhenNoException()
         {
             // ARRANGE & ACT
-            _game.Play();
+            _game.PlayAsync();
 
             // ASSERT
             AssertPlacementHasBeenMadeAtLeastOnce();
@@ -50,7 +50,7 @@ namespace Guestline.Battleships.Game.Tests.Unit
                 .Throws(new ArgumentException("This is error!"));
 
             // ACT
-            _game.Play();
+            _game.PlayAsync();
 
             // ASSERT
             AssertPlacementHasBeenMadeAtLeastOnce();

@@ -1,4 +1,5 @@
 ﻿using Guestline.Battleships.Game.Services.Base;
+using Guestline.Battleships.Web.Services.Base;
 
 namespace Guestline.Battleships.Game.Services
 {
@@ -15,6 +16,6 @@ namespace Guestline.Battleships.Game.Services
 
         public void Create() => _game = _gameFactory.Create();
 
-        public Game Get() => _game;
+        public Game? Get() => _game;
     }
 }

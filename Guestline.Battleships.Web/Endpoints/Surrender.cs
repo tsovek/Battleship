@@ -1,5 +1,5 @@
-﻿using Guestline.Battleships.Game.Commands.Handlers.Base;
-using Guestline.Battleships.Game.Commands;
+﻿using Guestline.Battleships.Web.Commands.Handlers.Base;
+using Guestline.Battleships.Web.Commands;
 
 namespace Guestline.Battleships.Web.Endpoints
 {
@@ -7,7 +7,8 @@ namespace Guestline.Battleships.Web.Endpoints
     {
         public static IResult Do(IServiceProvider serviceProvider)
         {
-            var handler = serviceProvider.GetService<ISurrenderCommandHandler>();
+            var handler = serviceProvider.GetService<ISurrenderCommandHandler>()
+                ?? throw new InvalidOperationException($"Missing {nameof(ISurrenderCommandHandler)} dependency.");
             handler.Handle(new SurrenderCommand());
 
             return Results.Ok();

@@ -1,4 +1,4 @@
-﻿namespace Guestline.Battleships.Game.Services.Base
+﻿namespace Guestline.Battleships.Web.Services.Base
 {
     public interface ISemaphoreService
     {

@@ -2,7 +2,7 @@
 using Guestline.Battleships.Domain.Services.Base;
 using Guestline.Battleships.Game.Services.Base;
 
-namespace Guestline.Battleships.Services
+namespace Guestline.Battleships.Console.Services
 {
     public class ConsoleService : IInteractionService
     {

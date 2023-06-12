@@ -1,11 +1,14 @@
 ﻿using Guestline.Battleships.Game.Services.Base;
 using Guestline.Battleships.Game.Services;
-using Guestline.Battleships.Infrastructure;
 using Guestline.Battleships.Web.Services;
 using Microsoft.Extensions.FileProviders;
 using Guestline.Battleships.Web.Endpoints;
 using Guestline.Battleships.Web.Hubs;
 using Guestline.Battleships.Web.Services.Base;
+using Guestline.Battleships.Web.Commands.Handlers.Base;
+using Guestline.Battleships.Web.Commands.Handlers;
+using Guestline.Battleships.Domain.Services.Base;
+using Guestline.Battleships.Domain.Services;
 
 namespace Guestline.Battleships.Web
 {
@@ -13,11 +16,18 @@ namespace Guestline.Battleships.Web
     {
         public static void RegisterDependencies(this WebApplicationBuilder builder)
         {
-            var dependencyInjectionResolver = new DependencyInjectionResolver(builder.Services);
-            dependencyInjectionResolver.RegisterSingleton<IBoardSerializer, BoardSerializer>();
-            dependencyInjectionResolver.RegisterSingleton<IInteractionService, AwaitingInteractionService>();
-            dependencyInjectionResolver.RegisterSingleton<ISemaphoreService, SemaphoreService>();
-            dependencyInjectionResolver.RegisterCommon();
+            builder.Services.AddTransient<IBoardService, BoardService>();
+            builder.Services.AddTransient<IBoardPrinter, BoardPrinter>();
+            builder.Services.AddTransient<IGameLoop, GameLoop>();
+            builder.Services.AddTransient<IGameFactory, GameFactory>();
+            builder.Services.AddTransient<IRandomService, RandomService>();
+            builder.Services.AddTransient<IBoardSerializer, BoardSerializer>();
+            builder.Services.AddTransient<IHitCommandHandler, HitCommandHandler>();
+            builder.Services.AddTransient<INewGameCommandHandler, NewGameCommandHandler>();
+            builder.Services.AddTransient<ISurrenderCommandHandler, SurrenderCommandHandler>();
+            builder.Services.AddSingleton<IGameCache, GameCache>();
+            builder.Services.AddSingleton<IInteractionService, AwaitingInteractionService>();
+            builder.Services.AddSingleton<ISemaphoreService, SemaphoreService>();
         }
 
         public static void RegisterReact(this WebApplication app)

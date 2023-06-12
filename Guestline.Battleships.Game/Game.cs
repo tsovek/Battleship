@@ -18,7 +18,7 @@ namespace Guestline.Battleships.Game
             _interactionService = interactionService;
         }
 
-        public async Task Play()
+        public async Task PlayAsync()
         {
             try
             {
